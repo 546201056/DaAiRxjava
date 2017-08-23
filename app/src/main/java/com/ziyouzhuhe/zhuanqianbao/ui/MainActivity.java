@@ -1,15 +1,31 @@
 package com.ziyouzhuhe.zhuanqianbao.ui;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+
+import android.widget.TextView;
 
 import com.ziyouzhuhe.zhuanqianbao.R;
+import com.ziyouzhuhe.zhuanqianbao.base.BaseActivity;
 
-public class MainActivity extends AppCompatActivity {
+import butterknife.BindView;
+
+public class MainActivity extends BaseActivity {
+
+    @BindView(R.id.text)
+    TextView textView;
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    public int getLayoutId() {
+        return R.layout.activity_main;
+    }
+
+    @Override
+    public void initPresenter() {
+
+    }
+
+    @Override
+    public void initView() {
+
     }
 }

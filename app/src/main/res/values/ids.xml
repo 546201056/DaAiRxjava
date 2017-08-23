@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="toolbar" type="id" />
+    <item name="textview" type="id" />
+    <item name="message_newcount" type="id" />
+    <item name="pull_to_refresh" type="id" />
+    <item name="linearlayout" type="id" />
+    <item name="listview" type="id" />
+    <item name="centerview" type="id" />
+    <item name="viewpager" type="id" />
+    <item name="option" type="id" />
+    <item name="data" type="id" />
+    <item name="tabs" type="id" />
+    <item name="adapter_item_data" type="id" />
+    <item name="adapter_item_position" type="id" />
+    <item name="pager" type="id" />
+    <item name="home_banner_list" type="id" />
+    <item name="home_mycourse_list" type="id" />
+    <item name="home_splendid_list" type="id" />
+    <item name="home_recommend_list" type="id" />
+    <item name="hot" type="id" />
+    <item name="first_news" type="id" />
+    <item type="id" name="drag_handle" />
+    <item type="id" name="click_remove" />
+</resources>

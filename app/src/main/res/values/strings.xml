@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Zhuanqianbao</string>
+    <string name="navigation_home">首页</string>
+    <string name="navigation_classify">课程分类</string>
+    <string name="navigation_jiaohu">交互中心</string>
+    <string name="navigation_personal_center">个人中心</string>
 </resources>

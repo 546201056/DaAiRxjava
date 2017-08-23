@@ -1,17 +1,149 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
     tools:context=".ui.MainActivity">
-
-    <TextView
-        android:id="@+id/text"
-        android:layout_width="wrap_content"
+    <FrameLayout
+        android:id="@+id/base_views_container"
+        android:layout_width="match_parent"
+        android:layout_height="0.0dp"
+        android:layout_weight="1.0" />
+    <LinearLayout
+        android:id="@+id/base_views_navigations"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
-</RelativeLayout>
+        android:orientation="horizontal"
+        android:baselineAligned="false"
+        android:background="@drawable/bg_index_menu">
+        <!--  -->
+        <RelativeLayout
+            android:id="@+id/base_navigation_home"
+            android:layout_width="0.0dp"
+            android:layout_weight="1.0"
+            android:layout_height="match_parent"
+            android:padding="2.0dp"
+            android:clickable="true"
+            android:background="@drawable/bg_bottom_tab">
+            <TextView
+                android:id="@id/textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/navigation_home"
+                android:textColor="@color/navigation_highlighted_bg"
+                android:textSize="13.0sp"
+                android:padding="6.0dp"
+                android:layout_centerInParent="true"
+                android:gravity="center_horizontal"
+                android:drawableTop="@drawable/navigation_home_holo_light"
+                android:drawablePadding="3.0dp" />
+            <TextView
+                android:id="@+id/base_navigation_home_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignRight="@id/textview"
+                android:layout_marginRight="-6.0dp"
+                android:gravity="center"
+                android:background="@drawable/transparent"
+                android:textColor="@color/transparent"
+                android:textSize="12.0sp" />
+        </RelativeLayout>
+        <!--  -->
+        <RelativeLayout
+            android:id="@+id/base_navigation_classify"
+            android:layout_width="0.0dp"
+            android:layout_weight="1.0"
+            android:layout_height="match_parent"
+            android:padding="2.0dp"
+            android:clickable="true"
+            android:background="@drawable/bg_bottom_tab">
+            <TextView
+                android:id="@id/textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/navigation_classify"
+                android:textColor="@color/navigation_default_bg"
+                android:textSize="13.0sp"
+                android:padding="6.0dp"
+                android:layout_centerInParent="true"
+                android:gravity="center_horizontal"
+                android:drawableTop="@drawable/navigation_classify_holo_drak"
+                android:drawablePadding="3.0dp" />
+            <TextView
+                android:id="@+id/base_navigation_classify_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignRight="@id/textview"
+                android:layout_marginRight="-6.0dp"
+                android:gravity="center"
+                android:background="@drawable/transparent"
+                android:textColor="@color/transparent"
+                android:textSize="12.0sp" />
+        </RelativeLayout>
+        <!--  -->
+        <RelativeLayout
+            android:id="@+id/base_navigation_jiaohu"
+            android:layout_width="0.0dp"
+            android:layout_weight="1.0"
+            android:layout_height="match_parent"
+            android:padding="2.0dp"
+            android:clickable="true"
+            android:background="@drawable/bg_bottom_tab">
+            <TextView
+                android:id="@id/textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/navigation_jiaohu"
+                android:textColor="@color/navigation_default_bg"
+                android:textSize="13.0sp"
+                android:padding="6.0dp"
+                android:layout_centerInParent="true"
+                android:gravity="center_horizontal"
+                android:drawableTop="@drawable/navigation_jiaohu_holo_drak"
+                android:drawablePadding="3.0dp" />
+            <TextView
+                android:id="@+id/base_navigation_jiaohu_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignRight="@id/textview"
+                android:layout_marginRight="-6.0dp"
+                android:gravity="center"
+                android:background="@drawable/transparent"
+                android:textColor="@color/transparent"
+                android:textSize="12.0sp" />
+        </RelativeLayout>
+        <!--  -->
+        <RelativeLayout
+            android:id="@+id/base_navigation_report"
+            android:layout_width="0.0dp"
+            android:layout_weight="1.0"
+            android:layout_height="match_parent"
+            android:padding="2.0dp"
+            android:clickable="true"
+            android:background="@drawable/bg_bottom_tab">
+            <TextView
+                android:id="@id/textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/navigation_personal_center"
+                android:textColor="@color/navigation_default_bg"
+                android:textSize="13.0sp"
+                android:padding="6.0dp"
+                android:layout_centerInParent="true"
+                android:gravity="center_horizontal"
+                android:drawableTop="@drawable/navigation_personal_holo_drak"
+                android:drawablePadding="3.0dp" />
+            <TextView
+                android:id="@+id/base_navigation_report_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignRight="@id/textview"
+                android:layout_marginRight="-6.0dp"
+                android:gravity="center"
+                android:background="@drawable/transparent"
+                android:textColor="@color/transparent"
+                android:textSize="12.0sp" />
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

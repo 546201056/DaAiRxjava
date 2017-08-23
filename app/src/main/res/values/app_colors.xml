@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="app_background">#eeeeee</color>
+    <color name="app_primary_material_dark">#191919</color>
+    <color name="app_primary_dark_material_dark">#191919</color>
+    <!-- Bottom toolbar menu default click color -->
+    <color name="navigation_default_bg">#888888</color>
+    <!-- Bottom  toolbar menu selected color -->
+    <color name="navigation_highlighted_bg">#ff8200</color>
+    <color name="home_title_textcolor">#111111</color>
+    <color name="fancybut_orange_normal">#f18700</color>
+    <color name="fancybut_orange_pressed">#ce790d</color>
+    <color name="fancy_cyanosis_pressed">#6e7991</color>
+    <color name="fancy_red_normal">#ee524d</color>
+    <color name="fancy_red_pressed">#cf413d</color>
+    <color name="fancybut_white_normal">@color/white</color>
+    <color name="fancybut_white_pressed">@color/antiquewhite2</color>
+    <color name="video_item_bg_blue">#0078db</color>
+    <color name="translucence">#e0000000</color>
+    <color name="exam_successful_background">#fdc300</color>
+    <color name="exam_successful_textcolor">#681a92</color>
+    <color name="study_state_background">#e61419</color>
+    <color name="comment_smiley_panel_bg">#f1f4f4</color>
+</resources>

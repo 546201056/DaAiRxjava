@@ -7,7 +7,5 @@ import android.content.Context;
  * Created by Administrator on 2017/8/23.
  */
 public class AppApplication extends Application{
-   public   Context getAppContext(){
-    return getAppContext();
-   }
+
 }

@@ -6,7 +6,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DecodeFormat;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.lvr.threerecom.R;
+import com.ziyouzhuhe.zhuanqianbao.R;
 
 import java.io.File;
 
@@ -30,8 +30,8 @@ public class ImageLoaderUtils {
         Glide.with(context).load(url)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .centerCrop()
-                .placeholder(R.drawable.ic_image_loading)
-                .error(R.drawable.ic_empty_picture)
+//                .placeholder(R.drawable.ic_image_loading)
+//                .error(R.drawable.ic_empty_picture)
                 .crossFade().into(imageView);
     }
 
@@ -42,8 +42,8 @@ public class ImageLoaderUtils {
         Glide.with(context).load(url)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .centerCrop()
-                .placeholder(R.drawable.ic_image_loading)
-                .error(R.drawable.ic_empty_picture)
+//                .placeholder(R.drawable.ic_image_loading)
+//                .error(R.drawable.ic_empty_picture)
                 .crossFade().into(imageView);
     }
     public static void displaySmallPhoto(Context context, ImageView imageView, String url) {
@@ -52,8 +52,8 @@ public class ImageLoaderUtils {
         }
         Glide.with(context).load(url).asBitmap()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .placeholder(R.drawable.ic_image_loading)
-                .error(R.drawable.ic_empty_picture)
+//                .placeholder(R.drawable.ic_image_loading)
+//                .error(R.drawable.ic_empty_picture)
                 .thumbnail(0.5f)
                 .into(imageView);
     }
@@ -65,8 +65,8 @@ public class ImageLoaderUtils {
                 .format(DecodeFormat.PREFER_ARGB_8888)
                 .fitCenter()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .placeholder(R.drawable.ic_image_loading)
-                .error(R.drawable.ic_empty_picture)
+//                .placeholder(R.drawable.ic_image_loading)
+//                .error(R.drawable.ic_empty_picture)
                 .into(imageView);
     }
     public static void display(Context context, ImageView imageView, int url) {
@@ -76,8 +76,8 @@ public class ImageLoaderUtils {
         Glide.with(context).load(url)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .centerCrop()
-                .placeholder(R.drawable.ic_image_loading)
-                .error(R.drawable.ic_empty_picture)
+//                .placeholder(R.drawable.ic_image_loading)
+//                .error(R.drawable.ic_empty_picture)
                 .crossFade().into(imageView);
     }
     public static void displayRound(Context context, ImageView imageView, String url) {
@@ -86,8 +86,8 @@ public class ImageLoaderUtils {
         }
         Glide.with(context).load(url)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .error(R.drawable.ic_empty_picture).
-                centerCrop().transform(new GlideRoundTransformUtil(context)).into(imageView);
+//                .error(R.drawable.ic_empty_picture)
+                .centerCrop().transform(new GlideRoundTransformUtil(context)).into(imageView);
     }
 
 }

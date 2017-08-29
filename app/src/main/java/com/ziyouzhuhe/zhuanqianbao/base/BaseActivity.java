@@ -7,9 +7,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
 
-import com.ziyouzhuhe.zhuanqianbao.R;
 import com.ziyouzhuhe.zhuanqianbao.app.AppManager;
-import com.ziyouzhuhe.zhuanqianbao.utils.StatusBarSetting;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -27,7 +25,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         doBeforeSetcontentView();
         setContentView(getLayoutId());
         // 默认着色状态栏
-        SetStatusBarColor();
+//        SetStatusBarColor();
         mUnbinder = ButterKnife.bind(this);
         mContext = this;
         this.initPresenter();
@@ -57,29 +55,31 @@ public abstract class BaseActivity extends AppCompatActivity {
     //简单页面无需mvp就不用管此方法即可,完美兼容各种实际场景的变通
     public abstract void initPresenter();
 
-    //初始化view
+    /**
+     *     //初始化view
+     */
     public abstract void initView() ;
 
-    /**
-     * 着色状态栏（4.4以上系统有效）
-     */
-    protected void SetStatusBarColor() {
-        StatusBarSetting.setColor(this, getResources().getColor(R.color.colorPrimary));
-    }
-
-    /**
-     * 着色状态栏（4.4以上系统有效）
-     */
-    protected void SetStatusBarColor(int color) {
-        StatusBarSetting.setColor(this, color);
-    }
-
-    /**
-     * 沉浸状态栏（4.4以上系统有效）
-     */
-    protected void SetTranslanteBar() {
-        StatusBarSetting.setTranslucent(this);
-    }
+//    /**
+//     * 着色状态栏（4.4以上系统有效）
+//     */
+//    protected void SetStatusBarColor() {
+//        StatusBarSetting.setColor(this, getResources().getColor(R.color.colorPrimary));
+//    }
+//
+//    /**
+//     * 着色状态栏（4.4以上系统有效）
+//     */
+//    protected void SetStatusBarColor(int color) {
+//        StatusBarSetting.setColor(this, color);
+//    }
+//
+//    /**
+//     * 沉浸状态栏（4.4以上系统有效）
+//     */
+//    protected void SetTranslanteBar() {
+//        StatusBarSetting.setTranslucent(this);
+//    }
 
 
     /**

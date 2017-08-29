@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-import com.lvr.threerecom.base.BaseApplication;
 
 
 /**
@@ -17,7 +16,7 @@ public class SPUtils {
 
     private static void init(Context context) {
         if (sp == null) {
-            sp = PreferenceManager.getDefaultSharedPreferences(BaseApplication.getAppContext());
+            sp = PreferenceManager.getDefaultSharedPreferences(context);
         }
     }
 

@@ -31,4 +31,8 @@
     //引入rxandroid
     compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
 
+练习json数据
+https://raw.githubusercontent.com/546201056/zhuanqianbao/master/json.md
+
+首页主要tab是ViewGroup获取子控件然后实例化，在通过id比对，获取textview，然后 textView.setCompoundDrawablesWithIntrinsicBounds(0,topRes,0,0);//设置tab切换图片
 

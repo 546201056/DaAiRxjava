@@ -1,6 +1,10 @@
 package com.ziyouzhuhe.zhuanqianbao.ui;
 
 import android.content.res.Resources;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -8,6 +12,10 @@ import android.widget.TextView;
 
 import com.ziyouzhuhe.zhuanqianbao.R;
 import com.ziyouzhuhe.zhuanqianbao.base.BaseActivity;
+import com.ziyouzhuhe.zhuanqianbao.ui.fragments.ClassyFragment;
+import com.ziyouzhuhe.zhuanqianbao.ui.fragments.HomeFragment;
+import com.ziyouzhuhe.zhuanqianbao.ui.fragments.JiaoShuFragment;
+import com.ziyouzhuhe.zhuanqianbao.ui.fragments.UserFragment;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener{
 
@@ -20,7 +28,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
 //    @BindView(R.id.base_navigation_report)
 //    RelativeLayout tab_report;
     private LinearLayout mViewsNavigationGroup;
-
+    private Fragment mContentFragment;
     @Override
     public int getLayoutId() {
         return R.layout.activity_main;
@@ -48,15 +56,56 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
        onSwitchNavigationBackground(vid);
         switch (view.getId()){
             case R.id.base_navigation_home:
+                this.onSwitchContentFrom(HomeFragment.class.getName(), null);
                 break;
             case R.id.base_navigation_classify:
+                this.onSwitchContentFrom(ClassyFragment.class.getName(), null);
                 break;
             case R.id.base_navigation_jiaohu:
+                this.onSwitchContentFrom(JiaoShuFragment.class.getName(), null);
                 break;
             case R.id.base_navigation_report:
+                this.onSwitchContentFrom(UserFragment.class.getName(), null);
                 break;
             default:
                 break;
+        }
+    }
+    /**
+     * 切换不同的页面展示
+     *
+     * @param newFragmentName 将要被切换到的新页面
+     * @param bundle          创建新页面时，指定初始化的相关数据
+     */
+    private void onSwitchContentFrom(String newFragmentName, Bundle bundle)
+    {
+        FragmentManager mFragmentManager = this.getSupportFragmentManager();
+        Fragment mFragment = mFragmentManager.findFragmentByTag(newFragmentName);
+        if (null == mFragment)
+            mFragment = Fragment.instantiate(getApplicationContext(), newFragmentName, bundle);
+
+        // 若当前显示的视图与将要被显示的视图冲突或不符，则以新的要显示的视图为准
+        if (mContentFragment != mFragment)
+        {
+            FragmentTransaction mTransaction = mFragmentManager.beginTransaction();
+            if (null == mContentFragment)
+                mTransaction.add(R.id.base_views_container, mFragment, newFragmentName);
+            else
+            {
+                if (!mFragment.isAdded())
+                {
+                    mTransaction.hide(mContentFragment).add(R.id.base_views_container, mFragment, newFragmentName);
+                    mContentFragment.onPause();
+                } else
+                {
+                    mTransaction.hide(mContentFragment).show(mFragment);
+                    mContentFragment.onPause();
+                    mFragment.onAttach(this);
+                    mFragment.onResume();
+                }
+            }
+            mTransaction.commitAllowingStateLoss();
+            mContentFragment = mFragment;
         }
     }
 

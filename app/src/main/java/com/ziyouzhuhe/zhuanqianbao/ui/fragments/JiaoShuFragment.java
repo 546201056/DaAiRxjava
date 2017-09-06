@@ -12,7 +12,7 @@ import butterknife.BindView;
  */
 public class JiaoShuFragment extends BaseFragment {
 @BindView(R.id.home_text)
-private TextView textView;
+public TextView textView;
     @Override
     protected int getLayoutResource() {
         return R.layout.fragment_home;

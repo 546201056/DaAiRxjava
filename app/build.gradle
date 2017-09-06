@@ -19,13 +19,26 @@ android {
     }
 }
 
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+    }
+}
+
+apply plugin: 'com.neenbedankt.android-apt'
+
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
-
     //视图绑定 butterknife
-    compile 'com.jakewharton:butterknife:8.4.0'
+    //    compile 'com.jakewharton:butterknife:8.8.1'
+    //视图绑定 butterknife
+    compile 'com.jakewharton:butterknife:8.0.1'
+    apt 'com.jakewharton:butterknife-compiler:8.0.1'
     //引入glide
     compile 'com.github.bumptech.glide:glide:3.7.0'
     //引入okhttp
@@ -42,4 +55,5 @@ dependencies {
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
     //引入rxandroid
     compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    compile files('libs/jsoup-1.10.3.jar')
 }

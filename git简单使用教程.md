@@ -1,5 +1,26 @@
 #git简单教程 (适用于参与开发技术前线)
 
+1. 建立Git仓库
+如果你要上传的项目目录下存在 .git文件，建议删除； 使用终端切换到你要上传的目录下面, 执行
+git init
+
+2. 将项目中所有文件添加到仓库中
+注意add 后有个 .  建议赋值粘贴
+git add .
+
+3. 将我们添加的文件commit到git仓库， 添加注释
+git commit -m "注释语句"
+
+4. 接下来我们将本地的仓库与github上的仓库进行关联
+git remote add origin    github上仓库的地址
+
+5. 上传之前我们先从git上拉取一下
+git pull origin master
+
+6. push本地项目到远程仓库
+git push -u origin master
+
+
 ## 1、git的安装与配置
 [Git详解之一：Git起步](http://blog.jobbole.com/25775/)
 

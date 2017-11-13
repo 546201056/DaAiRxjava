@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/DaAiRxjava.iml" filepath="$PROJECT_DIR$/DaAiRxjava.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/zhuanqianbao.iml" filepath="$PROJECT_DIR$/zhuanqianbao.iml" />
+      <module fileurl="file://E:\GitHubWork\DaAiRxjava\app\app.iml" filepath="E:\GitHubWork\DaAiRxjava\app\app.iml" />
+      <module fileurl="file://E:\GitHubWork\DaAiRxjava\zhuanqianbao.iml" filepath="E:\GitHubWork\DaAiRxjava\zhuanqianbao.iml" />
     </modules>
   </component>
 </project>

@@ -11,8 +11,9 @@ import butterknife.BindView;
  * Created by Administrator on 2017/8/29.
  */
 public class UserFragment extends BaseFragment {
-@BindView(R.id.home_text)
-public TextView textView;
+    @BindView(R.id.home_text)
+    public TextView textView;
+
     @Override
     protected int getLayoutResource() {
         return R.layout.fragment_home;

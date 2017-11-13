@@ -56,9 +56,9 @@ public abstract class BaseActivity extends AppCompatActivity {
     public abstract void initPresenter();
 
     /**
-     *     //初始化view
+     * //初始化view
      */
-    public abstract void initView() ;
+    public abstract void initView();
 
 //    /**
 //     * 着色状态栏（4.4以上系统有效）

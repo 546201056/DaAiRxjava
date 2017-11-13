@@ -14,7 +14,7 @@ import butterknife.Unbinder;
 /**
  * Created by Administrator on 2017/8/23.
  */
-public abstract class BaseFragment extends Fragment{
+public abstract class BaseFragment extends Fragment {
     protected View rootView;
 
     private Unbinder mUnbinder;
@@ -94,7 +94,7 @@ public abstract class BaseFragment extends Fragment{
             return;
         }
         //可见，并且没有加载过
-        if (!isFirst&&isFragmentVisible) {
+        if (!isFirst && isFragmentVisible) {
             onFragmentVisibleChange(true);
             return;
         }
@@ -104,7 +104,6 @@ public abstract class BaseFragment extends Fragment{
             isFragmentVisible = false;
         }
     }
-
 
 
     @Override

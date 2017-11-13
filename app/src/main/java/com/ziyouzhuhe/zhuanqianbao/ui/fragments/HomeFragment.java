@@ -21,6 +21,6 @@ public class HomeFragment extends BaseFragment {
 
     @Override
     protected void initView() {
-        textView.setText("第一个页面");
+        textView.setText("第1个页面");
     }
 }

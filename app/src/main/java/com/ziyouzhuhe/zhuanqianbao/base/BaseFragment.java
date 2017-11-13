@@ -1,12 +1,16 @@
 package com.ziyouzhuhe.zhuanqianbao.base;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+
+import com.gyf.barlibrary.ImmersionBar;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -22,10 +26,12 @@ public abstract class BaseFragment extends Fragment {
     private boolean isFragmentVisible;
     //是否是第一次开启网络加载
     public boolean isFirst;
+    protected ImmersionBar mImmersionBar;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         if (rootView == null)
             rootView = inflater.inflate(getLayoutResource(), container, false);
         mUnbinder = ButterKnife.bind(this, rootView);
@@ -34,8 +40,36 @@ public abstract class BaseFragment extends Fragment {
         if (isFragmentVisible && !isFirst) {
             onFragmentVisibleChange(true);
         }
+        if (isImmersionBarEnabled())
+            initImmersionBar();
         return rootView;
     }
+
+    /**
+     * 是否在Fragment使用沉浸式
+     *
+     * @return the boolean
+     */
+    protected boolean isImmersionBarEnabled() {
+        return true;
+    }
+
+    /**
+     * 初始化沉浸式
+     */
+    protected void initImmersionBar() {
+        mImmersionBar = ImmersionBar.with(this);
+        mImmersionBar.keyboardEnable(true).navigationBarWithKitkatEnable(false).init();
+    }
+
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (!hidden && mImmersionBar != null)
+            mImmersionBar.init();
+    }
+
 
     //获取布局文件
     protected abstract int getLayoutResource();
@@ -110,6 +144,9 @@ public abstract class BaseFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         mUnbinder.unbind();
+
+        if (mImmersionBar != null)
+            mImmersionBar.destroy();
     }
 
     /**

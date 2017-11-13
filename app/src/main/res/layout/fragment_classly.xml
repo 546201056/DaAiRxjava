@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#FFB6C1"
+    android:background="#ffcccc"
     tools:context=".ui.MainActivity">
 
     <TextView
@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
+        android:textColor="#ffffff"
         android:textSize="35sp" />
 
     <android.support.v7.widget.RecyclerView

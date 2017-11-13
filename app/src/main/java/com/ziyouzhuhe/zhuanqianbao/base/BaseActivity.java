@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
 
+import com.gyf.barlibrary.ImmersionBar;
 import com.ziyouzhuhe.zhuanqianbao.app.AppManager;
 
 import butterknife.ButterKnife;
@@ -31,6 +32,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         this.initPresenter();
         this.initView();
 
+        ImmersionBar.with(this).init(); //初始化，默认透明状态栏和黑色导航栏
     }
 
     /**
@@ -140,6 +142,8 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onDestroy();
         mUnbinder.unbind();
         AppManager.getAppManager().finishActivity(this);
+
+        ImmersionBar.with(this).destroy(); //不调用该方法，如果界面bar发生改变，在不关闭app的情况下，退出此界面再进入将记忆最后一次bar改变的状态
     }
 
 }

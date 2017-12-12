@@ -8,7 +8,7 @@ import android.content.Context;
 import java.util.Stack;
 
 /**
- * activity管理
+ * activity管理  添加测试
  */
 public class AppManager {
     private static Stack<Activity> activityStack;

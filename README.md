@@ -1,6 +1,4 @@
-# 第一个github项目
-
-记录自己的第一个github项目
+# github项目 大集合 kotiln
 
 大集合，学习锻炼
 

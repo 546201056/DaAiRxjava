@@ -3,9 +3,17 @@ package com.ziyouzhuhe.zhuanqianbao.api;
 import android.util.Log;
 
 import com.google.gson.Gson;
+import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import java.io.IOException;
 
+import io.reactivex.Observer;
+import io.reactivex.Scheduler;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.internal.subscriptions.ArrayCompositeSubscription;
+import io.reactivex.schedulers.Schedulers;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -26,7 +34,8 @@ public class HttpUtils {
         if (retrofit == null)
             retrofit = new Retrofit.Builder()
                     .baseUrl("https://raw.githubusercontent.com/")
-                    .addConverterFactory(GsonConverterFactory.create())
+                    .addConverterFactory(GsonConverterFactory.create())//请求的结果转为实体类
+                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())//Rxjava
                     .build();
     }
 
@@ -72,5 +81,38 @@ public class HttpUtils {
 
             }
         });
+    }
+
+
+    /**
+     * RxJava
+     * 请求返回对应的moudel
+     */
+    public void requstRToMoudel(){
+        DouApi douApi = retrofit.create(DouApi.class);
+        douApi.getRxMyJson()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<MyMoudel>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(MyMoudel myMoudel) {
+                        Log.d(TAG, "onNext: "+myMoudel.getMenu().getValue());
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 }

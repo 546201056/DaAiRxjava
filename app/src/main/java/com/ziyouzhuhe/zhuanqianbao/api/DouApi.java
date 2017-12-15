@@ -1,5 +1,10 @@
 package com.ziyouzhuhe.zhuanqianbao.api;
 
+
+import java.util.List;
+
+import io.reactivex.Observable;
+import io.reactivex.ObservableTransformer;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -26,4 +31,12 @@ public interface DouApi {
      */
     @GET("546201056/DaAiRxjava/{master}/json.md")
     Call<MyMoudel> getMyMyJson(@Path("master")String master);
+
+    /**
+     *  RxJava例子
+     * 返回特定的数据模式
+     * @return  MyMoudel 返回的参数类型
+     */
+    @GET("546201056/DaAiRxjava/json.md")
+    Observable<MyMoudel> getRxMyJson();
 }

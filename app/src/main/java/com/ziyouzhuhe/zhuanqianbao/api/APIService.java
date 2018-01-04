@@ -14,7 +14,7 @@ import retrofit2.http.Path;
  * Created by Administrator on 2017/12/13.
  */
 
-public interface DouApi {
+public interface APIService {
     /**
      *例子
      * @param owner 中间参数可以修改的

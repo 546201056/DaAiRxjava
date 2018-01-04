@@ -2,18 +2,21 @@ package com.ziyouzhuhe.zhuanqianbao.api;
 
 import android.util.Log;
 
-import com.google.gson.Gson;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+//import com.ziyouzhuhe.zhuanqianbao.utils.LogUtil;
 
 import java.io.IOException;
 
 import io.reactivex.Observer;
-import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.internal.subscriptions.ArrayCompositeSubscription;
 import io.reactivex.schedulers.Schedulers;
+import okhttp3.Connection;
+import okhttp3.Headers;
+import okhttp3.HttpUrl;
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -31,12 +34,37 @@ public class HttpUtils {
     Retrofit retrofit;
 
     public  HttpUtils() {
+        OkHttpClient.Builder okHttpClientBuilder = new OkHttpClient().newBuilder();
+        okHttpClientBuilder.addNetworkInterceptor(new NetworkInterceptor());//拦截器
+        OkHttpClient okHttpClient = okHttpClientBuilder.build();
+
         if (retrofit == null)
             retrofit = new Retrofit.Builder()
                     .baseUrl("https://raw.githubusercontent.com/")
                     .addConverterFactory(GsonConverterFactory.create())//请求的结果转为实体类
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())//Rxjava
+                    .client(okHttpClient)
                     .build();
+    }
+
+    /**
+     * 自定义网络拦截器
+     */
+    public class NetworkInterceptor implements Interceptor {
+        @Override
+        public okhttp3.Response intercept(Chain chain) throws IOException {
+            //这个chain里面包含了request和response，所以你要什么都可以从这里拿
+            //=========发送===========
+            Request request = chain.request();
+            HttpUrl requestUrl=request.url();
+            Connection requestConnection=chain.connection();
+            Headers requestHeaders=request.headers();
+            //打印发送信息
+//            LogUtil.e("===NetworkInterceptor===发送==requestUrl="+requestUrl);
+//            LogUtil.e("===NetworkInterceptor===发送==requestConnection="+requestConnection);
+//            LogUtil.e("===NetworkInterceptor===发送==requestHeaders="+requestHeaders);
+            return null;
+        }
     }
 
     /**
@@ -44,8 +72,8 @@ public class HttpUtils {
      */
     public void requstToString() {
 
-        DouApi douApi = retrofit.create(DouApi.class);
-        Call<ResponseBody> responseBodyCall = douApi.getMainJson("ower");
+        APIService APIService = retrofit.create(APIService.class);
+        Call<ResponseBody> responseBodyCall = APIService.getMainJson("ower");
         responseBodyCall.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -67,8 +95,8 @@ public class HttpUtils {
      * 请求返回对应的moudel
      */
     public void requstToMoudel(){
-        DouApi douApi = retrofit.create(DouApi.class);
-       Call<MyMoudel>myMoudelCall =  douApi.getMyMyJson("mou");
+        APIService APIService = retrofit.create(APIService.class);
+       Call<MyMoudel>myMoudelCall =  APIService.getMyMyJson("mou");
         myMoudelCall.enqueue(new Callback<MyMoudel>() {
             @Override
             public void onResponse(Call<MyMoudel> call, Response<MyMoudel> response) {
@@ -89,8 +117,8 @@ public class HttpUtils {
      * 请求返回对应的moudel
      */
     public void requstRToMoudel(){
-        DouApi douApi = retrofit.create(DouApi.class);
-        douApi.getRxMyJson()
+        APIService APIService = retrofit.create(APIService.class);
+        APIService.getRxMyJson()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<MyMoudel>() {

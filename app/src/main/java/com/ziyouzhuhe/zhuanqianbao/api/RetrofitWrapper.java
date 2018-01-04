@@ -56,7 +56,7 @@ public class RetrofitWrapper {
                 .addInterceptor(loggingInterceptor);
 
 
-            clientBuilder.addInterceptor(new NetworkInterceptor());
+            clientBuilder.addInterceptor(new NetworkInterceptor());//添加拦截器
 
         OkHttpClient okHttpClient = clientBuilder.build();
 

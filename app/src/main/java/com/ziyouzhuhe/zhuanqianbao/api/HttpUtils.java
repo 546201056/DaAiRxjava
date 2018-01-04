@@ -6,6 +6,7 @@ import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.ziyouzhuhe.zhuanqianbao.utils.LogUtil;
 
 import java.io.IOException;
+import java.util.Observable;
 
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -23,6 +24,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import java.util.*;
 
 import static android.content.ContentValues.TAG;
 
@@ -31,9 +33,25 @@ import static android.content.ContentValues.TAG;
  */
 
 public class HttpUtils {
+    private volatile static HttpUtils singleton;
     Retrofit retrofit;
+    private Observable observable;
+      HttpUtils() {
 
-    public  HttpUtils() {
+    }
+
+    public static HttpUtils getInstance() {
+        if (singleton == null) {
+            synchronized (HttpUtils.class) {
+                if (singleton == null) {
+                    singleton = new HttpUtils();
+                }
+            }
+        }
+        return singleton;
+    }
+
+    public HttpUtils setObservable(Observable observable) {
         OkHttpClient.Builder okHttpClientBuilder = new OkHttpClient().newBuilder();
         okHttpClientBuilder.addNetworkInterceptor(new NetworkInterceptor());//拦截器
         OkHttpClient okHttpClient = okHttpClientBuilder.build();
@@ -45,6 +63,7 @@ public class HttpUtils {
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())//Rxjava
                     .client(okHttpClient)
                     .build();
+        return singleton;
     }
 
     /**
@@ -56,13 +75,13 @@ public class HttpUtils {
             //这个chain里面包含了request和response，所以你要什么都可以从这里拿
             //=========发送===========
             Request request = chain.request();
-            HttpUrl requestUrl=request.url();
-            Connection requestConnection=chain.connection();
-            Headers requestHeaders=request.headers();
+            HttpUrl requestUrl = request.url();
+            Connection requestConnection = chain.connection();
+            Headers requestHeaders = request.headers();
             //打印发送信息
-            LogUtil.e("===NetworkInterceptor===发送==requestUrl="+requestUrl);
-            LogUtil.e("===NetworkInterceptor===发送==requestConnection="+requestConnection);
-            LogUtil.e("===NetworkInterceptor===发送==requestHeaders="+requestHeaders);
+            LogUtil.e("===NetworkInterceptor===发送==requestUrl=" + requestUrl);
+            LogUtil.e("===NetworkInterceptor===发送==requestConnection=" + requestConnection);
+            LogUtil.e("===NetworkInterceptor===发送==requestHeaders=" + requestHeaders);
             return null;
         }
     }
@@ -94,14 +113,14 @@ public class HttpUtils {
     /**
      * 请求返回对应的moudel
      */
-    public void requstToMoudel(){
+    public void requstToMoudel() {
         APIService APIService = retrofit.create(APIService.class);
-       Call<MyMoudel>myMoudelCall =  APIService.getMyMyJson("mou");
+        Call<MyMoudel> myMoudelCall = APIService.getMyMyJson("mou");
         myMoudelCall.enqueue(new Callback<MyMoudel>() {
             @Override
             public void onResponse(Call<MyMoudel> call, Response<MyMoudel> response) {
-                    MyMoudel myMoudel = response.body();
-                Log.d(TAG, "onResponse: "+myMoudel.getMenu().getValue());
+                MyMoudel myMoudel = response.body();
+                Log.d(TAG, "onResponse: " + myMoudel.getMenu().getValue());
             }
 
             @Override
@@ -116,7 +135,7 @@ public class HttpUtils {
      * RxJava
      * 请求返回对应的moudel
      */
-    public void requstRToMoudel(){
+    public void requstRToMoudel() {
         APIService APIService = retrofit.create(APIService.class);
         APIService.getRxMyJson()
                 .subscribeOn(Schedulers.io())
@@ -129,7 +148,7 @@ public class HttpUtils {
 
                     @Override
                     public void onNext(MyMoudel myMoudel) {
-                        Log.d(TAG, "onNext: "+myMoudel.getMenu().getValue());
+                        Log.d(TAG, "onNext: " + myMoudel.getMenu().getValue());
                     }
 
                     @Override
